@@ -42,7 +42,7 @@ public class Mk2 : MonoBehaviour
 
         if (Physics2D.OverlapCircleAll(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
-            Debug.Log(Physics2D.OverlapCircleAll(groundCheckTransform.position, 0.1f, playerMask).Length);
+            
             return;
 
         }
