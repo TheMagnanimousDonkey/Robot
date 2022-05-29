@@ -5,13 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 100;
+    public int maxHealth = 100;
     public GameObject deathEffect;
-  
+    public HealthBar healthBar;
+    public int currentHealth;
+
+     void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(currentHealth);
+    }
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -22,7 +30,7 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, transform.position,Quaternion.identity);
         //gameObject.SetActive(false);
         // Destroy(gameObject);
-        gameObject.transform.position = new Vector2(25f,25f);
+        gameObject.transform.position = new Vector2(225f,25f);
         StartCoroutine(Delay());
         
 
@@ -33,7 +41,7 @@ public class Enemy : MonoBehaviour
        
         yield return new WaitForSeconds(2);
         
-        Debug.Log("Why?");
+        
         SceneManager.LoadScene("Hub");
 
     }
