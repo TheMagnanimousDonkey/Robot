@@ -21,7 +21,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"C:/Users/shane/Robot/WebGL Builds/Build/Robot2;C:/Users/shane/My project (1)/WebGL Builds/Build/Robot;C:/Users/shane/My project (1)/WebGL Builds/Build;C:/Users/shane/My project (1)/WebGL Builds;;;;;;\"}"
+                "value": "{\"m_Value\":\"C:/Users/shane/Robot/WebGL Builds/Build;C:/Users/shane/My project (1)/WebGL Builds/Build/Robot;C:/Users/shane/My project (1)/WebGL Builds/Build;C:/Users/shane/My project (1)/WebGL Builds;;;;;;\"}"
             }
         ]
     }

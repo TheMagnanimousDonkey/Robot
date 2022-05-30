@@ -2,67 +2,61 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Mk2 : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float delay;
-    [SerializeField] Transform groundCheckTransform;
-    [SerializeField] LayerMask playerMask;
-    private Rigidbody2D body;
-    private Weapon w;
-    public Animator animator;
     public Transform firePoint;
     public GameObject bulletPrefab;
 
+    public int maxHealth = 100;
+    public GameObject deathEffect;
+    public HealthBar healthBar;
+    public int currentHealth;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-       
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(currentHealth);
+
 
     }
 
-    // Update is called once per frame
-    void Update()
+    //Take Damage
+
+    public void TakeDamage(int damage)
     {
-        body.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
-        animator.SetFloat("Movement", Mathf.Abs(body.velocity.x));
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
         {
-
-            
-            StartCoroutine(ShotDelay());
-            
-            }
-
-        if (Physics2D.OverlapCircleAll(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
-        {
-            
-            return;
-
+            Die();
         }
-        
-        if(Input.GetKey(KeyCode.W))
-        body.velocity = new Vector2(body.velocity.x,speed);
+    }
+
+    void Die()
+    {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        //gameObject.SetActive(false);
+        // Destroy(gameObject);
+        gameObject.transform.position = new Vector2(225f, 25f);
+        StartCoroutine(Delay());
+
 
     }
 
-    IEnumerator ShotDelay()
+    IEnumerator Delay()
     {
-        
-        animator.SetBool("Shoot", true);
-        yield return new WaitForSeconds(delay);
-        Shoot();
-        animator.SetBool("Shoot", false);
-    }
-    void Shoot()
-    {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        yield return new WaitForSeconds(2);
+
+
+        SceneManager.LoadScene("Hub");
+
     }
 }
 

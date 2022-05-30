@@ -8,18 +8,8 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
 
 
-    public void Update()
-    {
 
-        if (Input.GetButtonDown("Fire1"))
-        { 
-            Shoot(); 
-        }
-            
-        
-    }
-
-    void Shoot()
+   public void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
