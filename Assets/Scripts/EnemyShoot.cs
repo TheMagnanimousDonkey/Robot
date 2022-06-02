@@ -14,7 +14,7 @@ public class EnemyShoot : MonoBehaviour
         if (Time.time > nextFire)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            nextFire = nextFire + Random.Range(1, 5);
+            nextFire = nextFire + Random.Range(1, 3);
         }
     }
 }

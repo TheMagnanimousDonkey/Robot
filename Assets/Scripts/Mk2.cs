@@ -10,10 +10,11 @@ public class Mk2 : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
-    public int maxHealth = 100;
+    
     public GameObject deathEffect;
     public HealthBar healthBar;
     public int currentHealth;
+    public int maxHealth = 100;
 
 
     // Start is called before the first frame update
